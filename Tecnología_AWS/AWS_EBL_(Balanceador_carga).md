@@ -70,6 +70,8 @@ Un **Application Load Balancer (ALB)** es un servicio de Amazon Elastic Load Bal
 
 ``Es el componente que reparte las solicitudes de los usuarios entre tus servidores (EC2, ECS, Fargate, etc.) para evitar sobrecarga y mantener alta disponibilidad.``
 
+Puede basarse en el trafico para decidir si manda a una instancia y dejar de mandar a una que está fallando. Y se puede redirigir a todos los servicios involucrados o a una ip cualquiera.
+
 ### De Red: 
 
 ⚙️ Qué es el Network Load Balancer
@@ -83,6 +85,8 @@ Eso significa que **``no le importa qué tipo de aplicación estás ejecutando �
 - El protocolo (TCP, UDP, TLS)
 
 Y con esa información, reparte el tráfico entre tus servidores (instancias EC2, contenedores, etc.).
+
+Tiene información de Zonas Aisladas regiones también para redirigir 
 
 ### ⚙️ Qué es el Gateway Load Balancer (GLB)
 
@@ -102,7 +106,7 @@ Eso es lo que hace el Gateway Load Balancer:
 
 Se pone como puerta de entrada (gateway) del tráfico.
 
-Lo distribuye entre varios dispositivos virtuales (firewalls, inspección, monitoreo, etc.).
+``Lo distribuye entre varios dispositivos virtuales (firewalls, inspección, monitoreo, etc.). Para hacer primero una intervención de trafico para crear una capa de seguridad/ filtrado extra. `` 
 
 Los combina en alta disponibilidad y sin interrupción.
 
@@ -120,4 +124,10 @@ Puedo hacer un **grupo de auto escalado**.  Puedo configurar un minimo y un dese
 
 Puedo hacerlo manualmente: (Mañana es black friday entonces le voy a aumentar las instancias porque se que lo necesite.)
 
-Puedo hacerlo dinámicamente: (Le paso datos, basado en esos criterios que hagan que se creen o disminuyan instancias automaticamente. )
+Puedo hacerlo dinámicamente: (Le paso datos, basado en esos criterios que hagan que se creen o disminuyan instancias automaticamente. ) P ejemplo : Si la cpu llega al 90% entoces que haga el escalado , y si la cpu baja al 50% entonces auto escale y baje los recursos nuevamente. 
+
+Podemos también realizar un modelo predictivo tipo IA (No reglas fijas)
+sino adaptar reglas y criterios basandose en datos de uso anteriores. Con base en esto auto escala los recursos.  **``Las metricas se pueden relacionar con AWS CloudWATCH , metricas de los servicios, cuanto se está consumiendo``**
+
+## ELB y ASG:  (Aspectos adicionales.) Balanceador clasico no entra en la certificación y se pondrá en Des - Uso. 
+
